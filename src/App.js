@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -12,16 +11,7 @@ function App() {
   const [name, setName] = useState("");
   const [questions, setQuestions] = useState();
   const [score, setScore] = useState(0);
-  const fetchQuestions = async (category = "", difficulty = "") => {
-    // https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple
-    const { data } = await axios.get(
-      `https://opentdb.com/api.php?amount=10${
-        category && `&category=${category}`
-      }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
-    );
-    setQuestions(await data.results);
-  };
-  
+
   return (
     <BrowserRouter>
       <div className="App" style={{ backgroundImage: "url(./ques1.png)" }}>
@@ -30,11 +20,7 @@ function App() {
           <Route
             path="/"
             element={
-              <Home
-                name={name}
-                setName={setName}
-                fetchQuestions={fetchQuestions}
-              />
+              <Home name={name} setName={setName} setQuestions={setQuestions} />
             }
           />
           <Route
@@ -49,7 +35,10 @@ function App() {
               />
             }
           />
-          <Route path="/result" element={<Result />} />
+          <Route
+            path="/result"
+            element={<Result name={name} score={score} />}
+          />
         </Routes>
       </div>
       <Footer />

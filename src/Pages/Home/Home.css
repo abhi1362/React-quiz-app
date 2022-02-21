@@ -18,6 +18,11 @@
     align-self: center;
     padding: 8px;
   }
+  .loader{
+    position: relative;
+    left: 43%;
+    top: 12vh;
+  }
   
   @media (max-width: 800px) {
     .content {
@@ -32,6 +37,15 @@
     .settings {
       width: 100%;
     }
+    .loader{
+      left: 36%;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .loader{
+      left: 28%;
+    }
   }
   
   .settings__select {
@@ -42,3 +56,5 @@
     flex: 0.8;
     justify-content: space-evenly;
   }
+
+  
